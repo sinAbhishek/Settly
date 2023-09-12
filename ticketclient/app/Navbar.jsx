@@ -9,9 +9,10 @@ const Navbar = () => {
   const router = useRouter();
   const [tickets, settickets] = useState([]);
   const [open, setopen] = useState(false);
+  const URL = process.env.NEXT_PUBLIC_APP_Url;
   useEffect(() => {
     const call = async () => {
-      const res = await axios.get(`http://localhost:4000/api/auth/${user._id}`);
+      const res = await axios.get(`${URL}/${user._id}`);
       settickets(res.data.tickets);
     };
     user && call();

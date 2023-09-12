@@ -35,6 +35,7 @@ export default function Home() {
   const [file, setfile] = useState({ name: "Upload image" });
   const [image, setimage] = useState("");
   const [events, setevents] = useState([]);
+  const URL = process.env.NEXT_PUBLIC_APP_Url;
   const [data, setdata] = useState({
     eventtitle: "",
     eventdetail: "",
@@ -58,8 +59,9 @@ export default function Home() {
     setimage(res.data.secure_url);
   };
   useEffect(() => {
+    console.log(URL);
     const call = async () => {
-      const res = await axios.get("http://localhost:4000/api/getevents");
+      const res = await axios.get(`${URL}/getevents`);
       setevents(res.data);
     };
     call();
@@ -68,10 +70,7 @@ export default function Home() {
     const submit = async () => {
       const final = { ...data, image: image, datetime: value };
 
-      const res = await axios.post(
-        "http://localhost:4000/api/createevent",
-        final
-      );
+      const res = await axios.post(`${URL}/createevent`, final);
       handleClose();
       setevents((prev) => [...prev, final]);
     };
@@ -146,6 +145,7 @@ export default function Home() {
           </div>
         </Box>
       </Modal>
+      <button onClick={() => console.log(URL)}>Test</button>
     </>
   );
 }

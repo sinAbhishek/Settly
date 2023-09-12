@@ -26,9 +26,10 @@ const Page = ({ searchParams }) => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const { user } = useContext(AuthContext);
+  const URL = process.env.NEXT_PUBLIC_APP_Url;
   useEffect(() => {
     const call = async () => {
-      const res = await axios.get("http://localhost:4000/api/getevents");
+      const res = await axios.get(`${URL}/getevents`);
       setdata(res.data.filter((c) => c.eventtitle === searchParams.search));
     };
     call();
@@ -46,10 +47,7 @@ const Page = ({ searchParams }) => {
   };
   const submit = async () => {
     const tickets = { ...data[0], Price: ticket * 500, ticket: ticket };
-    const res = await axios.put(
-      `http://localhost:4000/api/auth/${user._id}`,
-      tickets
-    );
+    const res = await axios.put(`${URL}/${user._id}`, tickets);
   };
   return (
     <>

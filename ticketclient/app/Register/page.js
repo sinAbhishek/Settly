@@ -18,7 +18,7 @@ const Register = () => {
     email: "",
     password: "",
   });
-  const URL = "http://localhost:4000/api";
+  const URL = process.NEXT_PUBLIC_APP_Url;
   const handleChange = (e) => {
     setregisterDetails((prev) => ({
       ...prev,

@@ -10,7 +10,7 @@ import ScaleLoader from "react-spinners/BeatLoader";
 import Link from "next/link";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-const URL = "http://localhost:4000/api";
+const URL = process.env.NEXT_PUBLIC_APP_Url;
 const Login = () => {
   const router = useRouter();
   const [Loading, setloading] = useState(false);
