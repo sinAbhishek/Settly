@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import UploadIcon from "@mui/icons-material/Upload";
+import ScaleLoader from "react-spinners/ScaleLoader";
 import axios from "axios";
 import Button from "@mui/material/Button";
 import "react-datetime-picker/dist/DateTimePicker.css";
@@ -35,6 +36,7 @@ export default function Home() {
   const [file, setfile] = useState({ name: "Upload image" });
   const [image, setimage] = useState("");
   const [events, setevents] = useState([]);
+  const [Loading, setloading] = useState(true);
   const URL = process.env.NEXT_PUBLIC_APP_Url;
   const [data, setdata] = useState({
     eventtitle: "",
@@ -63,6 +65,7 @@ export default function Home() {
     const call = async () => {
       const res = await axios.get(`${URL}/getevents`);
       setevents(res.data);
+      setloading(false);
     };
     call();
   }, []);
@@ -82,15 +85,27 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <div className=" flex float-right my-2 mr-4">
-        {" "}
-        <button
-          onClick={handleOpen}
-          className=" bg-black text-white font-medium rounded-md px-4 py-1"
-        >
-          + Create Events
-        </button>
-      </div>
+      {!Loading ? (
+        <div className=" flex float-right my-2 mr-4">
+          {" "}
+          <button
+            onClick={handleOpen}
+            className=" bg-black text-white font-medium rounded-md px-4 py-1"
+          >
+            + Create Events
+          </button>
+        </div>
+      ) : (
+        <div className="scalelod bg-black items-center flex justify-center mt-2 h-screen">
+          <ScaleLoader
+            color={"white"}
+            loading={Loading}
+            size={17}
+            aria-label="Loading Spinner"
+            data-testid="loader"
+          />
+        </div>
+      )}
 
       <div className=" mt-4">
         {events[0] && events.map((c, i) => <Event key={i} event={c} />)}
