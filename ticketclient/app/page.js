@@ -93,7 +93,7 @@ export default function Home() {
       </div>
 
       <div className=" mt-4">
-        {events[0] && events.map((c) => <Event event={c} />)}
+        {events[0] && events.map((c, i) => <Event key={i} event={c} />)}
       </div>
       <Modal
         open={open}
@@ -145,7 +145,6 @@ export default function Home() {
           </div>
         </Box>
       </Modal>
-      <button onClick={() => console.log(URL)}>Test</button>
     </>
   );
 }

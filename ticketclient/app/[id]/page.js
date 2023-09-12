@@ -97,8 +97,9 @@ const Page = ({ searchParams }) => {
                 Select number of tickets :
               </h1>
               <div className=" flex mb-2 ">
-                {number.map((c) => (
+                {number.map((c, i) => (
                   <div
+                    key={i}
                     onClick={() => select(c)}
                     style={{ backgroundColor: ticket === c ? "red" : "black" }}
                     className="rounded-full w-6 h-6  text-white flex justify-center items-center hover:cursor-pointer"
