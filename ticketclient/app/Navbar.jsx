@@ -62,8 +62,8 @@ const Navbar = () => {
         </div>
 
         {tickets[0] ? (
-          tickets.map((c) => (
-            <div className=" bg-zinc-200">
+          tickets.map((c, i) => (
+            <div key={i} className=" bg-zinc-200">
               <div className=" flex items-center">
                 <img className=" w-12 h-12" src={c.image} alt="" />
                 <div className="">
