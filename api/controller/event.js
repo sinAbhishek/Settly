@@ -1,6 +1,6 @@
 import Event from "../model/event.js";
 
-export const createEvent = async (req, res) => {
+export const createEvent = async (req, res, next) => {
   try {
     const newevent = new Event(req.body);
     console.log(newevent);
@@ -11,7 +11,7 @@ export const createEvent = async (req, res) => {
   }
 };
 
-export const getevents = async (req, res) => {
+export const getevents = async (req, res, next) => {
   try {
     const events = await Event.find();
     res.status(200).json(events);
