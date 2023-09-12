@@ -32,7 +32,7 @@ const Page = ({ searchParams }) => {
       const res = await axios.get(`${URL}/getevents`);
       setdata(res.data.filter((c) => c.eventtitle === searchParams.search));
     };
-    call();
+    URL && call();
   }, []);
   useEffect(() => {
     const call = () => {

@@ -12,7 +12,7 @@ const Navbar = () => {
   const URL = process.env.NEXT_PUBLIC_APP_Url;
   useEffect(() => {
     const call = async () => {
-      const res = await axios.get(`${URL}/${user._id}`);
+      const res = await axios.get(`${URL}/auth/${user._id}`);
       settickets(res.data.tickets);
     };
     user && call();
