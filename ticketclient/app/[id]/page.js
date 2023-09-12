@@ -47,7 +47,8 @@ const Page = ({ searchParams }) => {
   };
   const submit = async () => {
     const tickets = { ...data[0], Price: ticket * 500, ticket: ticket };
-    const res = await axios.put(`${URL}/${user._id}`, tickets);
+    const res = await axios.put(`${URL}/auth/${user._id}`, tickets);
+    handleClose();
   };
   return (
     <>
@@ -89,23 +90,31 @@ const Page = ({ searchParams }) => {
         >
           <Box sx={style}>
             <div className="">
-              <h1>Price per ticket : Rs {500 * ticket}</h1>
-              <h1>Select number of tickets</h1>
-              <div className=" flex ">
+              <h1 className=" text-base font-medium">
+                Price per ticket : Rs {500 * ticket}
+              </h1>
+              <h1 className=" text-base font-medium mt-4">
+                Select number of tickets :
+              </h1>
+              <div className=" flex mb-2 ">
                 {number.map((c) => (
                   <div
                     onClick={() => select(c)}
                     style={{ backgroundColor: ticket === c ? "red" : "black" }}
-                    className="rounded-full w-7 h-7  text-white flex justify-center items-center"
+                    className="rounded-full w-6 h-6  text-white flex justify-center items-center hover:cursor-pointer"
                   >
                     {c}
                   </div>
                 ))}
               </div>
-
-              <button onClick={submit} className=" bg-black">
-                Submit
-              </button>
+              <div className=" flex justify-center">
+                <button
+                  onClick={submit}
+                  className=" bg-black text-white px-4 py-1 rounded-md hover:bg-red-400 transition duration-300"
+                >
+                  Submit
+                </button>
+              </div>
             </div>
           </Box>
         </Modal>

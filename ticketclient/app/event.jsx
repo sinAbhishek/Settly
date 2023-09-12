@@ -1,7 +1,10 @@
 import React from "react";
 import Link from "next/link";
+import { AuthContext } from "./Context/AuthContext";
+import { useContext } from "react";
 const Event = ({ event }) => {
   //   console.log(event);
+  const { user } = useContext(AuthContext);
   return (
     <div>
       <img className="w-screen h-80 bg-cover" src={event.image} alt="" />
@@ -10,7 +13,7 @@ const Event = ({ event }) => {
         <h1 className="text-slate-100 font-bold text-lg">{event.eventtitle}</h1>
         <Link
           href={{
-            pathname: `/${event.eventtitle}`,
+            pathname: user ? `/${event.eventtitle}` : "/login",
             query: {
               search: `${event.eventtitle}`,
             },
