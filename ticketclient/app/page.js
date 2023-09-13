@@ -125,9 +125,9 @@ export default function Home() {
               placeholder="Title"
               type="text"
             />
-            <input
+            <textarea
               onChange={handlechange}
-              className=" px-2 py-4 h-4 outline-none border border-zinc-500 text-slate-800 rounded-md mb-2"
+              className=" px-2 py-4 h-24 w-full outline-none border border-zinc-500 text-slate-800 rounded-md mb-2"
               id="eventdetail"
               placeholder="Event Details"
               type="text"
@@ -140,7 +140,7 @@ export default function Home() {
             />
             <div className="">
               <label
-                className=" bg-teal-400 px-2  py-2 flex items-center w-1/2 my-2"
+                className=" bg-teal-400 px-2 rounded-md  py-2 flex items-center w-1/2 my-2"
                 htmlFor="img"
               >
                 <UploadIcon />
@@ -152,7 +152,7 @@ export default function Home() {
           </div>
           <div className=" flex justify-center mt-4">
             <button
-              className=" bg-black text-white font-medium px-4 py-2 rounded-md"
+              className=" bg-black text-white rounded-md font-medium px-4 py-2 rounded-md"
               onClick={upload}
             >
               Submit
