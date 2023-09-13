@@ -21,7 +21,12 @@ const Navbar = () => {
   }, []);
   return (
     <div className=" h-24 w-screen bg-slate-100 border border-b-stone-900 flex justify-between items-center">
-      <h1 className=" ml-4">Home</h1>
+      <h1
+        onClick={() => router.push("/")}
+        className=" ml-4 hover:cursor-pointer"
+      >
+        Home
+      </h1>
       <div className=" mr-4">
         {" "}
         {user ? (
