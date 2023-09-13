@@ -1,4 +1,5 @@
 import { AuthContextProvider } from "./Context/AuthContext";
+import { TicketContextProvider } from "./Context/TicketContext";
 import "./globals.css";
 import { Inter } from "next/font/google";
 
@@ -13,7 +14,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <AuthContextProvider>{children}</AuthContextProvider>
+        <AuthContextProvider>
+          <TicketContextProvider>{children}</TicketContextProvider>
+        </AuthContextProvider>
       </body>
     </html>
   );

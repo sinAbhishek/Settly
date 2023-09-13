@@ -15,6 +15,9 @@ import Modal from "@mui/material/Modal";
 import DateTimePicker from "react-datetime-picker";
 import Event from "./event";
 import Navbar from "./Navbar";
+import { useContext } from "react";
+import { TicketContext } from "./Context/TicketContext";
+import { AuthContext } from "./Context/AuthContext";
 import { useRouter } from "next/navigation";
 const style = {
   position: "absolute",
@@ -28,6 +31,8 @@ const style = {
   p: 4,
 };
 export default function Home() {
+  const { tickets, Tikdispatch } = useContext(TicketContext);
+  const { user } = useContext(AuthContext);
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [value, onChange] = useState(new Date());
@@ -49,6 +54,7 @@ export default function Home() {
   const handlechange = (e) => {
     setdata((prev) => ({ ...prev, [e.target.id]: e.target.value }));
   };
+
   const upload = async () => {
     const formdata = new FormData();
     formdata.append("file", file);

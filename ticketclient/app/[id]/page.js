@@ -3,7 +3,7 @@ import axios from "axios";
 import React, { useState, useEffect, useContext } from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
-
+import { TicketContext } from "../Context/TicketContext";
 import { AuthContext } from "../Context/AuthContext";
 import Navbar from "../Navbar";
 const style = {
@@ -19,6 +19,7 @@ const style = {
 };
 const Page = ({ searchParams }) => {
   const [date, setdate] = useState("");
+  const { Tikdispatch } = useContext(TicketContext);
   const [data, setdata] = useState([]);
   const [ticket, setticket] = useState(1);
   const [open, setOpen] = useState(false);
@@ -48,6 +49,7 @@ const Page = ({ searchParams }) => {
   const submit = async () => {
     const tickets = { ...data[0], Price: ticket * 500, ticket: ticket };
     const res = await axios.put(`${URL}/auth/${user._id}`, tickets);
+    Tikdispatch({ type: "UPDATE", payload: tickets });
     handleClose();
   };
   return (

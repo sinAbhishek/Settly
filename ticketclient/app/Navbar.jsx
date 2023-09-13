@@ -4,16 +4,18 @@ import { useContext } from "react";
 import styles from "./styles.module.css";
 import { useRouter } from "next/navigation";
 import axios from "axios";
+import { TicketContext } from "./Context/TicketContext";
 const Navbar = () => {
   const { user, dispatch } = useContext(AuthContext);
+  const { tickets, Tikdispatch } = useContext(TicketContext);
   const router = useRouter();
-  const [tickets, settickets] = useState([]);
   const [open, setopen] = useState(false);
   const URL = process.env.NEXT_PUBLIC_APP_Url;
   useEffect(() => {
     const call = async () => {
       const res = await axios.get(`${URL}/auth/${user._id}`);
-      settickets(res.data.tickets);
+      // settickets(res.data.tickets);
+      Tikdispatch({ type: "START", payload: res.data.tickets });
     };
     user && call();
   }, []);
@@ -50,7 +52,7 @@ const Navbar = () => {
       <div
         className={
           open
-            ? `${styles.show}  w-72 h-screen bg-orange-100 right-0 top-0 bottom-0 z-20 fixed overflow-auto pt-8 border border-black`
+            ? `${styles.show}  w-72 h-screen bg-slate-100 right-0 top-0 bottom-0 z-20 fixed overflow-auto pt-8 border border-black`
             : ` ${styles.hide} w-72 h-screen bg-stone-700 right-0 top-0 bottom-0 z-20 fixed overflow-auto`
         }
       >
@@ -63,7 +65,7 @@ const Navbar = () => {
 
         {tickets[0] ? (
           tickets.map((c, i) => (
-            <div key={i} className=" bg-zinc-200">
+            <div key={i} className=" bg-pink-200 m-4 p-2">
               <div className=" flex items-center">
                 <img className=" w-12 h-12" src={c.image} alt="" />
                 <div className="">
