@@ -144,7 +144,7 @@ export default function Home() {
                 htmlFor="img"
               >
                 <UploadIcon />
-                {file.name}
+                {file.name.substring(0, 15)}
               </label>
             </div>
 
